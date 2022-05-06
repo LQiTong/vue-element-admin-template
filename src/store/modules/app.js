@@ -11,7 +11,8 @@ const state = {
   device: 'desktop',
   language: getLanguage(),
   size: Cookies.get('size') || 'medium',
-  menus: []
+  menus: [],
+  buttonType: process.env.VUE_APP_BUTTON_TYPE
 }
 
 const mutations = {

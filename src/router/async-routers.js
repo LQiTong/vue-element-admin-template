@@ -39,5 +39,15 @@ export default [
       title: '403页面'
     },
     component: '403'
+  },
+  {
+    name: 'error500',
+    parentId: 20000,
+    id: 20003,
+    meta: {
+      icon: 'table',
+      title: '500页面'
+    },
+    component: '500'
   }
 ]

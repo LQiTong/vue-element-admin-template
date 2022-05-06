@@ -8,6 +8,7 @@ import { notFoundRouter, rootRouter } from '@/router/routers'
 import { listToTree, generator } from '@/router/generator-routers'
 import asyncRoutersData from '@/router/async-routers'
 
+// 免登录名单
 const allowList = ['login', 'register', 'registerResult']
 const loginRoutePath = '/login'
 const defaultRoutePath = '/'
@@ -29,7 +30,7 @@ async function setRouters({ to, from, next, result }) {
   // 请求带有 redirect 重定向时，登录自动重定向到该地址
   const redirect = decodeURIComponent(from.query.redirect || to.path)
   if (to.path === redirect) {
-    // set the replace: true so the navigation will not leave a history record
+    // set the replace: true so the navigation will not leave a history record  ======================== 设置 replace：true，这样导航就不会留下历史记录
     next({ ...to, replace: true })
   } else {
     // 跳转到目的路由
@@ -45,12 +46,8 @@ router.beforeEach(async (to, from, next) => {
       next({ path: defaultRoutePath })
     } else {
       if (!store.getters.menus?.length) {
-        setRouters({
-          to,
-          from,
-          next,
-          result: asyncRoutersData
-        })
+        // 路由设置
+        setRouters({ to, from, next, result: asyncRoutersData })
       } else {
         next()
       }

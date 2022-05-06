@@ -11,6 +11,7 @@ const getters = {
   introduction: state => state.user.introduction,
   roles: state => state.user.roles,
   errorLogs: state => state.errorLog.logs,
-  menus: state => state.app.menus
+  menus: state => state.app.menus,
+  buttonType: (state) => state.app.buttonType
 }
 export default getters

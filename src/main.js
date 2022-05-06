@@ -32,6 +32,11 @@ Vue.prototype.$storage = storage
 // 全局组件注册
 import Components from '@/components'
 
+// mixin 混入方法
+import Mixin from '@/mixin'
+
+Vue.use(Mixin)
+
 Vue.use(Components)
 
 Vue.use(Element, {

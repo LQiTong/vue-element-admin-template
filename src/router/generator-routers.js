@@ -9,6 +9,7 @@ const constantRouterComponents = {
 
   403: () => import(/* webpackChunkName: "error" */ '@/views/error-page/403'),
   404: () => import(/* webpackChunkName: "error" */ '@/views/error-page/404'),
+  500: () => import(/* webpackChunkName: "error" */ '@/views/error-page/500'),
 
   // account
   AccountList: () => import('@/views/account')
@@ -41,8 +42,7 @@ export const generator = (routerMap, parent) => {
       name: item.name || item.key || '',
       // 该路由对应页面的 组件(动态加载)
       component:
-        constantRouterComponents[item.component || item.key] ||
-        (resolve => require([`@/views/${item.component}`], resolve)),
+        constantRouterComponents[item.component || item.key] || (resolve => require([`@/views/${item.component}`], resolve)),
 
       // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
       meta: {
