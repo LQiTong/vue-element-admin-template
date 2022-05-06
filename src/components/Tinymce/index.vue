@@ -1,8 +1,17 @@
 <template>
-  <div :class="{fullscreen:fullscreen}" class="tinymce-container" :style="{width:containerWidth}">
-    <textarea :id="tinymceId" class="tinymce-textarea" />
+  <div
+    :class="{ fullscreen: fullscreen }"
+    class="tinymce-container"
+    :style="{ width: containerWidth }"
+  >
+    <textarea :id="tinymceId" class="tinymce-textarea" :placeholder="placeholder"></textarea>
     <div class="editor-custom-btn-container">
-      <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK" />
+      <editorImage
+        v-if="showUploadImage"
+        color="#1890ff"
+        class="editor-upload-btn"
+        @successCBK="imageSuccessCBK"
+      />
     </div>
   </div>
 </template>
@@ -15,18 +24,38 @@
 import editorImage from './components/EditorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
-import load from './dynamicLoadScript'
+// import load from './dynamicLoadScript'
 
 // why use this cdn, detail see https://github.com/PanJiaChen/tinymce-all-in-one
-const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
+// const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
 
 export default {
   name: 'Tinymce',
   components: { editorImage },
   props: {
+    isPlugins: {
+      type: Boolean,
+      default: true
+    },
+    showUploadImage: {
+      type: Boolean,
+      default: true
+    },
+    isToolBar: {
+      type: Boolean,
+      default: true
+    },
+    isMenuBar: {
+      type: Boolean,
+      default: true
+    },
+    placeholder: {
+      type: String,
+      default: '随便输入一点什么吧...'
+    },
     id: {
       type: String,
-      default: function() {
+      default() {
         return 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
       }
     },
@@ -54,6 +83,10 @@ export default {
       type: [Number, String],
       required: false,
       default: 'auto'
+    },
+    flag: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -95,12 +128,13 @@ export default {
     }
   },
   mounted() {
-    this.init()
+    // this.init()
+    this.initTinymce()
   },
   activated() {
-    if (window.tinymce) {
-      this.initTinymce()
-    }
+    // if (window.tinymce) {
+    this.initTinymce()
+    // }
   },
   deactivated() {
     this.destroyTinymce()
@@ -109,27 +143,30 @@ export default {
     this.destroyTinymce()
   },
   methods: {
-    init() {
-      // dynamic load tinymce from cdn
-      load(tinymceCDN, (err) => {
-        if (err) {
-          this.$message.error(err.message)
-          return
-        }
-        this.initTinymce()
-      })
-    },
+    // init() {
+    //   // dynamic load tinymce from cdn
+    //   load(tinymceCDN, (err) => {
+    //     if (err) {
+    //       this.$message.error(err.message)
+    //       return
+    //     }
+    //     this.initTinymce()
+    //   })
+    // },
     initTinymce() {
       const _this = this
       window.tinymce.init({
         language: this.language,
+        readonly: _this.flag,
+        relative_urls: false,
         selector: `#${this.tinymceId}`,
         height: this.height,
+        statusbar: false,
         body_class: 'panel-body ',
         object_resizing: false,
-        toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
-        menubar: this.menubar,
-        plugins: plugins,
+        toolbar: this.isToolBar ? (this.toolbar.length > 0 ? this.toolbar : toolbar) : [],
+        menubar: this.isMenuBar ? this.menubar : '',
+        plugins: this.isPlugins ? plugins : [],
         end_container_on_empty_block: true,
         powerpaste_word_import: 'clean',
         code_dialog_height: 450,
@@ -218,6 +255,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../Emoji/index.scss";
 .tinymce-container {
   position: relative;
   line-height: normal;

@@ -1,7 +1,7 @@
 <template>
   <div :class="computedClasses" class="material-input__component">
     <div :class="{iconClass:icon}">
-      <i v-if="icon" :class="['el-icon-' + icon]" class="el-input__icon material-input__icon" />
+      <i v-if="icon" :class="['el-icon-' + icon]" class="el-input__icon material-input__icon"></i>
       <input
         v-if="type === 'email'"
         v-model="currentValue"
@@ -16,7 +16,7 @@
         @focus="handleMdFocus"
         @blur="handleMdBlur"
         @input="handleModelInput"
-      >
+      />
       <input
         v-if="type === 'url'"
         v-model="currentValue"
@@ -31,7 +31,7 @@
         @focus="handleMdFocus"
         @blur="handleMdBlur"
         @input="handleModelInput"
-      >
+      />
       <input
         v-if="type === 'number'"
         v-model="currentValue"
@@ -51,7 +51,7 @@
         @focus="handleMdFocus"
         @blur="handleMdBlur"
         @input="handleModelInput"
-      >
+      />
       <input
         v-if="type === 'password'"
         v-model="currentValue"
@@ -68,7 +68,7 @@
         @focus="handleMdFocus"
         @blur="handleMdBlur"
         @input="handleModelInput"
-      >
+      />
       <input
         v-if="type === 'tel'"
         v-model="currentValue"
@@ -83,7 +83,7 @@
         @focus="handleMdFocus"
         @blur="handleMdBlur"
         @input="handleModelInput"
-      >
+      />
       <input
         v-if="type === 'text'"
         v-model="currentValue"
@@ -100,10 +100,10 @@
         @focus="handleMdFocus"
         @blur="handleMdBlur"
         @input="handleModelInput"
-      >
-      <span class="material-input-bar" />
+      />
+      <span class="material-input-bar"></span>
       <label class="material-label">
-        <slot />
+        <slot></slot>
       </label>
     </div>
   </div>

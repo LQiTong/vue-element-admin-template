@@ -1,6 +1,6 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside"></div>
     <sidebar class="sidebar-container" />
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
@@ -11,6 +11,7 @@
       <right-panel v-if="showSettings">
         <settings />
       </right-panel>
+      <footer>&copy; {{ title }}</footer>
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@ import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
+const defaultSettings = require('@/settings')
 
 export default {
   name: 'Layout',
@@ -47,6 +49,9 @@ export default {
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
+    },
+    title() {
+      return defaultSettings.title || 'Vue Element Admin'
     }
   },
   methods: {
@@ -98,5 +103,21 @@ export default {
 
   .mobile .fixed-header {
     width: 100%;
+  }
+
+  .main-container {
+    position: relative;
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      font-size: 20px;
+      font-weight: bolder;
+      text-align: center;
+      background-color: #fff;
+    }
   }
 </style>

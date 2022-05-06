@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
 .app-main {
   /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px - 50px);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -40,7 +40,7 @@ export default {
 .hasTagsView {
   .app-main {
     /* 84 = navbar + tags-view = 50 + 34 */
-    min-height: calc(100vh - 84px);
+    min-height: calc(100vh - 84px - 50px);
   }
 
   .fixed-header + .app-main {
@@ -55,5 +55,19 @@ export default {
   .fixed-header {
     padding-right: 15px;
   }
+}
+
+.el-main {
+  padding: 0;
+  margin: 24px;
+  overflow: inherit;
+  // flexnone: !important;
+  min-height: 720px;
+}
+
+.main-page-content {
+  border-radius: 5px;
+  padding: 24px;
+  background-color: #fff;
 }
 </style>

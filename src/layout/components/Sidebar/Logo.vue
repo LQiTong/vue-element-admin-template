@@ -2,11 +2,11 @@
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
+        <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1 v-else class="sidebar-title">{{ title }} </h1>
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
+        <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1 class="sidebar-title">{{ title }} </h1>
       </router-link>
     </transition>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+const defaultSettings = require('@/settings')
 export default {
   name: 'SidebarLogo',
   props: {
@@ -24,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
+      title: defaultSettings.title || 'Vue Element Admin',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
@@ -32,6 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// ! 详情看 vue 官网 transition 组件介绍：https://cn.vuejs.org/v2/api/#transition
 .sidebarLogoFade-enter-active {
   transition: opacity 1.5s;
 }

@@ -7,7 +7,7 @@ const constantRouterComponents = {
   Layout,
   PageView,
 
-  401: () => import(/* webpackChunkName: "error" */ '@/views/error-page/401'),
+  403: () => import(/* webpackChunkName: "error" */ '@/views/error-page/403'),
   404: () => import(/* webpackChunkName: "error" */ '@/views/error-page/404'),
 
   // account

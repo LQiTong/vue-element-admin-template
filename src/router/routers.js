@@ -60,15 +60,19 @@ export const constantRoutes = [
   {
     path: '/404',
     name: '404',
-    component: () =>
-      import(/* webpackChunkName: "error" */ '@/views/error-page/404'),
+    component: () => import(/* webpackChunkName: "error" */ '@/views/error-page/404'),
     hidden: true
   },
   {
-    path: '/401',
-    name: '401',
-    component: () =>
-      import(/* webpackChunkName: "error" */ '@/views/error-page/401'),
+    path: '/403',
+    name: '403',
+    component: () => import(/* webpackChunkName: "error" */ '@/views/error-page/403'),
+    hidden: true
+  },
+  {
+    path: '/500',
+    name: '500',
+    component: () => import(/* webpackChunkName: "error" */ '@/views/error-page/500'),
     hidden: true
   }
 ]

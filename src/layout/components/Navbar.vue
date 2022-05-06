@@ -22,8 +22,8 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img src="https://avatars.githubusercontent.com/u/26930175?s=400&u=36be7703d7aa4e9e71c5ce9fa96c29c4c51247f1&v=4?imageView2/1/w/80/h/80" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
+          <img src="https://avatars.githubusercontent.com/u/26930175?s=400&u=36be7703d7aa4e9e71c5ce9fa96c29c4c51247f1&v=4?imageView2/1/w/80/h/80" class="user-avatar" />
+          <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/profile/index">
@@ -61,7 +61,7 @@ import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
-import Search from '@/components/HeaderSearch'
+// import Search from '@/components/HeaderSearch'
 
 export default {
   components: {
@@ -70,8 +70,7 @@ export default {
     ErrorLog,
     Screenfull,
     SizeSelect,
-    LangSelect,
-    Search
+    LangSelect
   },
   computed: {
     ...mapGetters([

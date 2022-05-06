@@ -31,13 +31,13 @@ export default [
     component: '404'
   },
   {
-    name: 'error401',
+    name: 'error403',
     parentId: 20000,
     id: 20002,
     meta: {
       icon: 'table',
-      title: '401页面'
+      title: '403页面'
     },
-    component: '401'
+    component: '403'
   }
 ]

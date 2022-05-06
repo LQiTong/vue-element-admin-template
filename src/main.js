@@ -24,6 +24,11 @@ if (process.env.NODE_ENV !== 'production') {
   require('../mock')
 }
 
+import { storage } from '@/utils/storage'
+import * as utils from '@/utils'
+Vue.prototype.$utils = utils
+Vue.prototype.$storage = storage
+
 // 全局组件注册
 import Components from '@/components'
 

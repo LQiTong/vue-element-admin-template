@@ -19,7 +19,7 @@
         <template slot-scope="scope">
           <el-tooltip placement="top" class="mr-10">
             <el-button size="mini" @click="editUser(scope.row)">
-              <i class="el-icon-edit" />
+              <i class="el-icon-edit"></i>
             </el-button>
             <template slot="content">编辑</template>
           </el-tooltip>
@@ -28,7 +28,7 @@
               <div class="inlineBlock">
                 <el-tooltip placement="top">
                   <el-button type="danger" size="mini">
-                    <i class="el-icon-delete" />
+                    <i class="el-icon-delete"></i>
                   </el-button>
                   <template slot="content">删除</template>
                 </el-tooltip>

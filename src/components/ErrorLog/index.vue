@@ -20,14 +20,14 @@
                 {{ row.err.message }}
               </el-tag>
             </div>
-            <br>
+            <br />
             <div>
               <span class="message-title" style="padding-right: 10px;">Info: </span>
               <el-tag type="warning">
                 {{ row.vm.$vnode.tag }} error in {{ row.info }}
               </el-tag>
             </div>
-            <br>
+            <br />
             <div>
               <span class="message-title" style="padding-right: 16px;">Url: </span>
               <el-tag type="success">
