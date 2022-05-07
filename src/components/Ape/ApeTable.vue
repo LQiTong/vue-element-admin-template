@@ -19,6 +19,7 @@
         v-if="typeof (pagingData.offset) != 'undefined'"
         width="64"
         label="序号"
+        align="center"
       >
         <template slot-scope="scope">
           <span>{{ dataOffset + scope.$index + 1 }}</span>

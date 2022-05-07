@@ -19,7 +19,15 @@ const constantRouterComponents = {
   ProxyList: () => import('@/views/proxy/list'),
   ProxyGroup: () => import('@/views/proxy/group'),
   // task 任务管理
-  TaskList: () => import('@/views/task/list')
+  TaskList: () => import('@/views/task/list'),
+  TaskFriendsAdd: () => import('@/views/task/friendsAdd'),
+  TaskFriendsCircle: () => import('@/views/task/friendsCircle'),
+  TaskMassMsg: () => import('@/views/task/massMsg'),
+  // 资料管理
+  MaterialTalk: () => import('@/views/material/talk'),
+  MaterialNickname: () => import('@/views/material/nickname'),
+  MaterialPortrait: () => import('@/views/material/portrait'),
+  MaterialPicture: () => import('@/views/material/picture')
 }
 
 /**

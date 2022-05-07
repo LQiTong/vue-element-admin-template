@@ -80,7 +80,7 @@ export const constantRoutes = [
 // 前端未找到页面路由（固定不用改）
 export const notFoundRouter = {
   path: '*',
-  redirect: '/404',
+  redirect: 'error/error404',
   hidden: true
 }
 

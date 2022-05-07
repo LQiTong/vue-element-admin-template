@@ -20,7 +20,7 @@
       :paging-data="pagingData"
       highlight-current-row
     >
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-tooltip placement="top" class="mr-10">
             <el-button @click="editUser(scope.row)">
@@ -128,11 +128,22 @@ export default {
       },
       visible: false,
       columns: [
-        { title: '用户名', value: 'username' },
-        { title: '昵称', value: 'nickname' },
-        { title: '手机号', value: 'mobile' },
-        { title: '邮箱', value: 'email' },
-        { title: '加入时间', value: 'created_at' }
+        { title: '账号ID', value: 'username' },
+        { title: '昵称', value: 'username' },
+        { title: '是否健康', value: 'username' },
+        { title: '所属分组', value: 'username' },
+        { title: '好友数', value: 'username' },
+        { title: '自动应答数', value: 'username' },
+        { title: '群发数', value: 'username' },
+        { title: '朋友圈文字', value: 'username' },
+        { title: '朋友圈图片', value: 'username' },
+        { title: '性别', value: 'username' },
+        { title: '昵称', value: 'username' },
+        { title: '头像', value: 'username' },
+        { title: '签名', value: 'username' },
+        { title: '账号渠道', value: 'username' },
+        { title: '导入时间', value: 'username' },
+        { title: '备注', value: 'username' }
       ],
       drawerData: {
         visible: false,
