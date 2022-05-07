@@ -11,8 +11,15 @@ const constantRouterComponents = {
   404: () => import(/* webpackChunkName: "error" */ '@/views/error-page/404'),
   500: () => import(/* webpackChunkName: "error" */ '@/views/error-page/500'),
 
-  // account
-  AccountList: () => import('@/views/account')
+  // account 账号管理
+  AccountList: () => import('@/views/account/list'),
+  AccountGroup: () => import('@/views/account/group'),
+  AccountUpload: () => import('@/views/account/upload'),
+  // proxy IP管理 代理
+  ProxyList: () => import('@/views/proxy/list'),
+  ProxyGroup: () => import('@/views/proxy/group'),
+  // task 任务管理
+  TaskList: () => import('@/views/task/list')
 }
 
 /**
