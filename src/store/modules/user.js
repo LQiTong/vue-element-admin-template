@@ -1,4 +1,4 @@
-import { handleLogin } from '@/api/user'
+import { handleLogin } from '@/api/modules/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 

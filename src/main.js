@@ -26,8 +26,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 import { storage } from '@/utils/storage'
 import * as utils from '@/utils'
+import api from '@/api'
 Vue.prototype.$utils = utils
 Vue.prototype.$storage = storage
+Vue.prototype.$api = api
 
 // 全局组件注册
 import Components from '@/components'

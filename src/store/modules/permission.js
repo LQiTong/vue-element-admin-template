@@ -1,4 +1,4 @@
-import { getMenu } from '@/api/menu'
+import { getMenu } from '@/api/modules/menu'
 const state = {
   routes: [],
   addRoutes: [],
