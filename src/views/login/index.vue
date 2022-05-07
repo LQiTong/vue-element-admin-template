@@ -60,6 +60,20 @@
           </span>
         </el-form-item>
       </el-tooltip>
+      <el-form-item v-if="showSlideVerify">
+        <slide-verify
+          ref="slideblock"
+          :l="42"
+          :r="10"
+          :w="448"
+          :h="168"
+          :imgs="imgs"
+          slider-text="向右滑动"
+          @success="onSuccess"
+          @fail="onFail"
+          @refresh="onRefresh"
+        />
+      </el-form-item>
 
       <el-button
         :loading="loading"
@@ -103,6 +117,17 @@ export default {
       }
     }
     return {
+      loginIndex: 0,
+      showSlideVerify: false,
+      verigyMsg: '',
+      imgs: [
+        require('@/assets/img/img0.jpg'),
+        require('@/assets/img/img1.jpg'),
+        require('@/assets/img/img2.jpg'),
+        require('@/assets/img/img3.jpg'),
+        require('@/assets/img/img4.jpg'),
+        require('@/assets/img/img5.jpg')
+      ],
       loginForm: {
         username: 'admin',
         password: '123456'
@@ -162,8 +187,18 @@ export default {
       })
     },
     handleLogin() {
+      if (!this.loginIndex) {
+        this.loginIndex++
+        this.showSlideVerify = true
+        return
+      }
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          if (!this.verifyMsg) {
+            this.loading = false
+            this.$message.warning('请通过滑动验证后，再进行提交！！！')
+            return
+          }
           this.loading = true
           this.$store
             .dispatch('user/login', this.loginForm)
@@ -191,6 +226,15 @@ export default {
         }
         return acc
       }, {})
+    },
+    onSuccess() {
+      this.verifyMsg = 'success'
+    },
+    onFail() {
+      this.verifyMsg = ''
+    },
+    onRefresh() {
+      this.verifyMsg = ''
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

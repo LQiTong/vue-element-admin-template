@@ -1,6 +1,7 @@
-import { handleLogin } from '@/api/modules/user'
+import userApi from '@/api/modules/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import router, { resetRouter } from '@/router'
+import router from '@/router'
+import { resetRouter } from '@/permission'
 
 const state = {
   token: getToken(),
@@ -33,7 +34,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      handleLogin({
+      userApi.handleLogin({
         account: username.trim(),
         password
       })

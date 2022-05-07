@@ -1,4 +1,4 @@
-import { getMenu } from '@/api/modules/menu'
+import menuApi from '@/api/modules/menu'
 const state = {
   routes: [],
   addRoutes: [],
@@ -38,7 +38,7 @@ const actions = {
   },
   getMenus({ state, commit, dispatch }) {
     return new Promise((resolve, reject) => {
-      getMenu()
+      menuApi.getMenu()
         .then(res => {
           resolve(res.data.list)
         })

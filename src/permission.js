@@ -65,3 +65,8 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 })
+
+export function resetRouter() {
+  const newRouter = router
+  router.matcher = newRouter.matcher
+}
