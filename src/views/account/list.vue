@@ -2,12 +2,12 @@
   <div class="main-page-content">
     <el-row class="mb-10">
       <el-col>
-        <el-button v-if="buttonType == 'text'" type="primary" icon="iconfont " @click="newUser">添加用户</el-button>
+        <el-button v-if="buttonType == 'text'" type="primary" icon="iconfont " @click="newAccount">注册账号</el-button>
         <el-tooltip placement="top">
-          <el-button type="primary" @click="newUser">
+          <el-button type="primary" @click="newAccount">
             <svg-icon icon-class="icon-add-list-button" />
           </el-button>
-          <template slot="content">添加用户</template>
+          <template slot="content">注册账号</template>
         </el-tooltip>
       </el-col>
     </el-row>
@@ -101,11 +101,6 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item>
-            <el-button @click="drawerClose">取消</el-button>
-            <el-button v-if="userType === 1" type="primary" @click="drawerConfirm">立即修改</el-button>
-            <el-button v-if="userType === 0" type="primary" @click="drawerConfirm">立即创建</el-button>
-          </el-form-item>
         </el-form>
       </div>
     </ApeDrawer>
@@ -149,9 +144,9 @@ export default {
         visible: false,
         loading: true,
         loading_text: '玩命加载中……',
-        title: '编辑用户',
+        title: '注册账号',
         mask: true,
-        show_footer: false,
+        show_footer: true,
         width_height: '30%'
       },
       rolesList: [],
@@ -178,12 +173,12 @@ export default {
   },
   methods: {
     async getUserList() {
-      const res = await this.$api.getUserList()
-      if (res.code === 200) {
-        this.userList = res.data.list || []
-        this.pagingData = res.data.pages || {}
-        this.loadingStatus = false
-      }
+      // const res = await this.$api.getUserList()
+      // if (res.code === 200) {
+      // this.userList = res.data.list || []
+      // this.pagingData = res.data.pages || {}
+      this.loadingStatus = false
+      // }
     },
     drawerClose() {
       this.$initFormData('userForm', { user_roles: [] })
@@ -213,11 +208,11 @@ export default {
     handleCurrentChange(val) {
       this.currentRow = val
     },
-    async newUser() {
+    async newAccount() {
       this.userType = 0
       this.drawerData.loading_text = '玩命加载中……'
       this.drawerData.visible = true
-      this.drawerData.title = '新增用户'
+      this.drawerData.title = '注册账号'
       // const { data: list } = await this.$api.getRoles()
       // this.rolesList = list
       this.drawerData.loading = false
@@ -228,7 +223,7 @@ export default {
       this.drawerData.loading_text = '玩命加载中……'
       this.userForm = this.$utils.deepClone(row)
       this.drawerData.visible = true
-      this.drawerData.title = `编辑用户(UID:${row.id})`
+      this.drawerData.title = `编辑账号(UID:${row.id})`
       // const { data: list } = await this.$api.getRoles()
       this.drawerData.loading = false
       // this.rolesList = list

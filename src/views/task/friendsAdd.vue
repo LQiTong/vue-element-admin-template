@@ -1,5 +1,16 @@
 <template>
   <div class="main-page-content">
+    <el-row class="mb-10">
+      <el-col>
+        <el-button v-if="buttonType == 'text'" type="primary" icon="iconfont " @click="newTask">新增任务</el-button>
+        <el-tooltip placement="top">
+          <el-button type="primary" @click="newTask">
+            <svg-icon icon-class="icon-add-list-button" />
+          </el-button>
+          <template slot="content">新增任务</template>
+        </el-tooltip>
+      </el-col>
+    </el-row>
     <ApeTable
       ref="apeTable"
       :data="list"
@@ -41,6 +52,47 @@
         </template>
       </el-table-column>
     </ApeTable>
+
+    <ApeDrawer
+      :drawer-data="drawerData"
+      @drawer-close="drawerClose"
+      @drawer-confirm="drawerConfirm"
+    >
+      <div slot="ape-drawer" class="drawer-container">
+        <el-form ref="form" :model="form" :rules="rules" label-width="150px" :inline="false">
+          <el-form-item label="任务名">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="执行账号组">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="执行设备数">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="采集号段">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="采集类型">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="指定性别">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="过滤最近上线时间">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="话术">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="指定手机号">
+            <el-input v-model="form.taskName" />
+          </el-form-item>
+          <el-form-item label="任务备注">
+            <el-input v-model="form.taskName" type="textarea" />
+          </el-form-item>
+        </el-form>
+      </div>
+    </ApeDrawer>
   </div>
 </template>
 
@@ -81,7 +133,18 @@ export default {
         total: 0,
         page_size: 10,
         offset: 0
-      }
+      },
+      drawerData: {
+        visible: false,
+        loading: true,
+        loading_text: '玩命加载中……',
+        title: '新增任务',
+        mask: true,
+        show_footer: true,
+        width_height: '30%'
+      },
+      form: {},
+      rules: {}
     }
   },
   // 计算属性，会监听依赖属性值随之变化
@@ -100,7 +163,19 @@ export default {
   },
   // 方法集合
   methods: {
-
+    newTask() {
+      this.drawerData.loading_text = '玩命加载中……'
+      this.drawerData.visible = true
+      this.drawerData.title = '新增任务'
+      this.drawerData.loading = false
+    },
+    drawerClose() {
+      this.drawerData.visible = false
+    },
+    drawerConfirm() {
+      this.drawerData.visible = false
+    },
+    onSubmit() {}
   }
 }
 </script>

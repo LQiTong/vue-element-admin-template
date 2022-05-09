@@ -1,5 +1,17 @@
 <template>
   <div class="main-page-content">
+    <el-row class="mb-10">
+      <el-col>
+        <el-button v-if="buttonType == 'text'" type="primary" icon="iconfont " @click="importAccount">导入账号</el-button>
+        <el-tooltip placement="top">
+          <el-button type="primary" @click="importAccount">
+            <svg-icon icon-class="icon-add-list-button" />
+          </el-button>
+          <template slot="content">导入账号</template>
+        </el-tooltip>
+      </el-col>
+    </el-row>
+
     <ApeTable
       ref="apeTable"
       :data="list"
@@ -41,6 +53,30 @@
         </template>
       </el-table-column>
     </ApeTable>
+
+    <ApeDrawer
+      :drawer-data="drawerData"
+      @drawer-close="drawerClose"
+      @drawer-confirm="drawerConfirm"
+    >
+      <div slot="ape-drawer" class="drawer-container">
+        <el-form
+          ref="form"
+          class="form"
+          :rules="rules"
+          :model="form"
+          label-width="120px"
+          :inline="false"
+        >
+          <el-form-item label="组名" prop="groupName">
+            <el-input v-model="form.groupName" />
+          </el-form-item>
+          <el-form-item label="账号渠道" prop="channel">
+            <el-input v-model="form.channel" />
+          </el-form-item>
+        </el-form>
+      </div>
+    </ApeDrawer>
   </div>
 </template>
 
@@ -78,6 +114,20 @@ export default {
         total: 0,
         page_size: 10,
         offset: 0
+      },
+      editType: 0,
+      rules: {},
+      drawerData: {
+        visible: false,
+        loading: true,
+        loading_text: '玩命加载中……',
+        title: '导入账号',
+        mask: true,
+        show_footer: true,
+        width_height: '30%'
+      },
+      form: {
+
       }
     }
   },
@@ -97,7 +147,18 @@ export default {
   },
   // 方法集合
   methods: {
-
+    importAccount() {
+      this.editType = 0
+      this.drawerData.visible = true
+      this.drawerData.title = '导入账号'
+      this.drawerData.loading = false
+    },
+    drawerClose() {
+      this.drawerData.visible = false
+    },
+    drawerConfirm() {
+      this.drawerData.visible = false
+    }
   }
 }
 </script>
